@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Honors – Create leagues with your mates</title>
+  <meta name="description" content="Honors lets you create private golf leagues with your mates, track your round hole by hole and put friendly bets on the round. Sign up for early access.">
+  <meta name="theme-color" content="#0a3322">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/SpecialGothicCondensedOne-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg-fixed" aria-hidden="true"><div class="bg-fixed__green"></div></div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="#faq">FAQ</a>
+        <a href="#how">How it works</a>
+        <a href="blog.html">From the course</a>
+      </nav>
+
+      <a class="logo" href="#top" data-scroll-top aria-label="Honors home">
+        <svg viewBox="0 0 155.93 110.8" fill="currentColor" aria-hidden="true"><path d="M153.93,0h-5.39c-.77,0-1.47.44-1.8,1.13l-1.72,3.78c-.29-.17-.63-.27-1.01-.27H62.98c-.75,0-1.43.41-1.78,1.08l-17.99,34.32h-18.32c-.74,0-1.42.41-1.77,1.06L.24,83.97c-.71,1.33.25,2.95,1.77,2.95h89.6c.77,0,1.46-.44,1.8-1.13l6.08-12.48c1.88-5.39,3.61-15.18-7.23-17.7-8.42-1.96-45.95-1.58-51.59-2.32-.99-.13-1.22-.6-1-1.12.25-.61.87-.61.87-.61h82.89c.12,0,.24-.03.35-.05l-25.74,56.43c-.64,1.33.33,2.87,1.8,2.87h6c.77,0,1.47-.44,1.81-1.14L155.73,2.86c.63-1.33-.33-2.86-1.81-2.86Z"/></svg>
+        <span>HONORS</span>
+      </a>
+
+      <div class="header-actions">
+        <a class="btn" href="#signup"><span class="cta-long">Sign up for early access</span><span class="cta-short">Sign up</span></a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <svg viewBox="0 0 26.92 16.57" aria-hidden="true"><path d="M.64,2.55c.07.15.22.25.39.25l25.45-.14c.32,0,.54-.32.4-.62l-.55-1.79c-.07-.15-.22-.25-.39-.25h-.9s-11.13,0-11.13,0H.44C.12.01-.09.34.04.64l.6,1.91Z"/><path d="M26.34,7.14c-.07-.15-.22-.25-.39-.25h-.9s-11.13,0-11.13,0H.44c-.32,0-.54.33-.4.63l.6,1.91c.07.15.22.25.39.25l25.45-.14c.32,0,.54-.32.4-.62l-.55-1.79Z"/><path d="M26.34,14.02c-.07-.15-.22-.25-.39-.25h-.9s-11.13,0-11.13,0H.44c-.32,0-.54.33-.4.63l.6,1.91c.07.15.22.25.39.25l25.45-.14c.32,0,.54-.32.4-.62l-.55-1.79Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile overflow menu -->
+  <div class="menu-overlay" id="menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+    <div class="menu-overlay__bar">
+      <a class="btn" href="#signup" data-menu-link>Sign up</a>
+      <button class="menu-close" type="button" aria-label="Close menu">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 2l16 16M18 2L2 18"/></svg>
+      </button>
+    </div>
+    <nav aria-label="Mobile">
+      <a href="#how" data-menu-link>How it works</a>
+      <a href="blog.html">From the course</a>
+      <a href="#faq" data-menu-link>FAQ</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" data-theme="dark" aria-label="Introduction">
+      <div class="hero__copy">
+        <div class="hero-titles">
+          <h1 class="hero-title is-active" data-hero-title>Create leagues<br>with your mates</h1>
+          <p class="hero-title" data-hero-title aria-hidden="true">Track your round</p>
+          <p class="hero-title" data-hero-title aria-hidden="true">Put bets on the round</p>
+        </div>
+        <div class="hero-timer" aria-hidden="true"><span></span></div>
+        <a class="btn btn--lg" href="#how">Learn more</a>
+      </div>
+
+      <div class="phone-carousel">
+        <div class="phone-carousel__stage" aria-hidden="true">
+          <img class="phone-carousel__slide is-active" src="assets/phone-leaderboard.webp" width="836" height="1476" alt="">
+          <img class="phone-carousel__slide phone-carousel__slide--left" src="assets/phone-course.webp" width="831" height="1471" alt="" loading="lazy">
+          <img class="phone-carousel__slide" src="assets/phone-bets.webp" width="842" height="1474" alt="" loading="lazy">
+        </div>
+        <div class="dots">
+          <button type="button" class="is-active" aria-label="Show: Create leagues with your mates"></button>
+          <button type="button" aria-label="Show: Track your round"></button>
+          <button type="button" aria-label="Show: Put bets on the round"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== How it works ===== -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <h2 class="section__title" id="how-title">How it works</h2>
+        <div class="cards">
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+            </div>
+            <h3>Create leagues with your mates</h3>
+            <p>Bring your mates together in a private league. Turn your regular rounds into friendly competition and see who comes out on top.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V3.5M5 4.5c4-2 7 2 14 0v9c-7 2-10-2-14 0"/></svg>
+            </div>
+            <h3>Track your round</h3>
+            <p>Keep your scores in one place as you play. Follow your round hole by hole and look back on how you performed.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15.5" cy="8.5" r="5.5"/><path d="M15.5 6.5v4M7 11.2a5.5 5.5 0 1 0 5.8 6.9"/><path d="M7.5 15.5l1.7-1.7"/></svg>
+            </div>
+            <h3>Put bets on the round</h3>
+            <p>Add a little extra rivalry with friendly bets on the round. Agree the stakes with your mates and play for more than bragging rights.</p>
+          </article>
+        </div>
+        <a class="link-more" href="blog.html">See more
+          <svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 class="section__title" id="faq-title">Frequently asked questions</h2>
+        <div class="faq-cols">
+          <div class="faq-col">
+            <div class="faq-item is-open">
+              <h3><button class="faq-item__q" type="button" aria-expanded="true" aria-controls="faq-a1" id="faq-q1">Do I have to pay for early access?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>No, early access is free! You’ll be among the first to play Honors, and you’ll get a say in how the app takes shape.</p></div></div>
+            </div>
+            <div class="faq-item is-open">
+              <h3><button class="faq-item__q" type="button" aria-expanded="true" aria-controls="faq-a2" id="faq-q2">What do you do with my information?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>We use the information you provide to manage your early access and keep improving the app. We won’t share your information with third parties.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <h3><button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">What do I need to do with early access?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>Nothing formal. Play a few rounds, set up a league with your mates, and if you’ve got thoughts on what we could do better, we’d love to hear them.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <h3><button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">How do I get the app on my phone?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p>Sign up using the form below and we’ll email you everything you need to get the app on your iPhone. Early access runs through Apple’s official TestFlight program, so you’ll download the app from a reliable source.</p></div></div>
+            </div>
+          </div>
+
+          <div class="faq-col">
+            <div class="faq-item">
+              <h3><button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">Is the app available for Android?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p>Right now early access is iPhone only. Once we’ve got that to a good place we’ll be launching an Android version.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <h3><button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Can I invite my friends to join my league?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p>Send this site to your mates and get them to sign up for early access. Once they’ve created an account you can search them in the app and create your own leagues.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <h3><button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">I signed up but haven’t heard back<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a7" role="region" aria-labelledby="faq-q7"><div><p>We are slowly adding as many golf courses to the app as we can, but currently this is a manual process. It may take us some time to get to you, so please bear with us.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <h3><button class="faq-item__q" type="button" aria-expanded="false" aria-controls="faq-a8" id="faq-q8">How does the betting feature work, and is real money involved?<span class="faq-item__icon" aria-hidden="true"></span></button></h3>
+              <div class="faq-item__a" id="faq-a8" role="region" aria-labelledby="faq-q8"><div><p>Honors allows you to bet on the real events that happen during your round (like who will beat who, or who’s getting trapped in the sand), but no real money is processed or transacted through the app itself. Settling up at the end is still up to you!</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sign up ===== -->
+    <section class="signup" data-theme="dark" id="signup" aria-labelledby="signup-title">
+      <h2 id="signup-title">Sign up for early access</h2>
+
+      <div class="signup-card" id="signup-card">
+        <h3>Join the club</h3>
+        <p>Be among the first to play Honors. Sign up below and we’ll email you everything you need to get the app on your phone.</p>
+
+        <form id="signup-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input class="control" id="name" name="name" type="text" autocomplete="name" placeholder="Enter your full name" required>
+              <p class="field-error">Please enter your name.</p>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input class="control" id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+              <p class="field-error">Please enter a valid email address.</p>
+            </div>
+            <div class="field">
+              <label for="course">Course you play most often</label>
+              <input class="control" id="course" name="course" type="text" placeholder="e.g. St Andrews Old Course">
+            </div>
+            <div class="field">
+              <label for="country">Country</label>
+              <select class="control" id="country" name="country" autocomplete="country-name" required>
+                <option value="" selected disabled>Select country</option>
+                <option>Australia</option><option>Austria</option><option>Belgium</option><option>Brazil</option>
+                <option>Canada</option><option>Denmark</option><option>Finland</option><option>France</option>
+                <option>Germany</option><option>Hong Kong</option><option>India</option><option>Ireland</option>
+                <option>Italy</option><option>Japan</option><option>Netherlands</option><option>New Zealand</option>
+                <option>Norway</option><option>Portugal</option><option>Singapore</option><option>South Africa</option>
+                <option>South Korea</option><option>Spain</option><option>Sweden</option><option>Switzerland</option>
+                <option>United Arab Emirates</option><option>United Kingdom</option><option>United States</option>
+                <option>Other</option>
+              </select>
+              <p class="field-error">Please select your country.</p>
+            </div>
+            <fieldset class="field field--half">
+              <legend>What mobile device do you have</legend>
+              <div class="device-options">
+                <label class="device-option">
+                  <input type="radio" name="device" value="ios" required>
+                  <span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                    iOS
+                  </span>
+                </label>
+                <label class="device-option">
+                  <input type="radio" name="device" value="android">
+                  <span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5h12v8.2A1.3 1.3 0 0 1 16.7 19H15v2.7a1.3 1.3 0 0 1-2.6 0V19h-.8v2.7a1.3 1.3 0 0 1-2.6 0V19H7.3A1.3 1.3 0 0 1 6 17.7z"/><path d="M3.2 9.7a1.2 1.2 0 0 1 2.4 0v5.6a1.2 1.2 0 0 1-2.4 0zM18.4 9.7a1.2 1.2 0 0 1 2.4 0v5.6a1.2 1.2 0 0 1-2.4 0z"/><path d="M6.2 8.4a5.8 5.8 0 0 1 11.6 0zM8.6 3.2l-1-1.7.6-.4 1 1.8zm6.8 0l-.6-.3 1-1.8.6.4z"/><circle cx="9.7" cy="6" r=".75" fill="#f8f9f9"/><circle cx="14.3" cy="6" r=".75" fill="#f8f9f9"/></svg>
+                    Android
+                  </span>
+                </label>
+              </div>
+              <p class="field-error">Please choose a device.</p>
+            </fieldset>
+
+            <div class="form-foot">
+              <p>By joining, you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a>.</p>
+              <button class="btn btn--submit" type="submit">Create account
+                <svg viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="form-success" role="status" aria-live="polite" tabindex="-1">
+          <h3>You’re in the club</h3>
+          <p>Thanks for signing up. We’ll email you your early access details soon.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span id="year">2026</span> Honors</span>
+      <nav aria-label="Footer">
+        <a href="#how">How it works</a>
+        <a href="blog.html">From the course</a>
+        <a href="#faq">FAQ</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

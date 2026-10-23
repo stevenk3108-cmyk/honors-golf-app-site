@@ -1,0 +1,29 @@
+HOW TO EDIT THE BLOG
+====================
+Each post is one .txt file in this folder (the 3 numbered files).
+Edit a file, then run:   node build.mjs
+That rewrites blog.html (the list) and blog/<slug>.html (one page per post),
+plus sitemap.xml. Upload those to your host.
+
+TOP OF EACH FILE (before the --- line), one "name: value" per line
+  slug         the page address: blog/<slug>.html  (changing it changes the URL)
+  title        the visible headline (H1/H2)
+  seo-title    the <title> shown in Google results (aim for under ~60 characters)
+  description  the meta description / search snippet (aim for 120-155 characters)
+  tag          the small label above the headline
+  date         YYYY-MM-DD
+  read         e.g. 4 min read
+  image        image path, e.g. assets/phone-bets.webp
+  image-size   widthxheight in pixels
+  image-alt    alt text describing the image (good for image SEO / accessibility)
+
+BODY (after the --- line)
+  Blank line between paragraphs
+  ## Heading            a sub-heading (H3)
+  - **Bold** item       a bullet list (consecutive lines)
+  > Quote               a pull-quote
+  **bold**              bold text anywhere
+
+To add a post, copy one file, give it a new name and slug, and rebuild.
+Set your real domain in SITE_URL at the top of build.mjs to enable canonical
+links, social-share tags and the sitemap.
