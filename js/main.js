@@ -264,28 +264,44 @@
         email: form.elements.email.value.trim(),
         course: form.elements.course.value.trim(),
         country: form.elements.country.value,
-        device: form.querySelector('input[name="device"]:checked').value
+        device: form.querySelector('input[name="device"]:checked').value,
+        website: form.elements.website.value // honeypot, should be empty
       };
       var submit = form.querySelector('button[type="submit"]');
+      var errorBox = document.getElementById('form-error');
+      function fail(msg) {
+        submit.disabled = false;
+        errorBox.textContent = msg || 'Sorry, something went wrong. Please try again.';
+        errorBox.hidden = false;
+      }
+      errorBox.hidden = true;
       submit.disabled = true;
 
-      // Set data-endpoint on the <form> to POST sign-ups to your backend / form service.
+      // Sign-ups are posted to the Google Apps Script web app set in the form's data-endpoint attribute.
       var endpoint = form.getAttribute('data-endpoint');
-      var request = endpoint
-        ? fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
-          }).then(function (r) { if (!r.ok) throw new Error('Request failed'); })
-        : Promise.resolve();
+      var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === 'file:';
+      var request;
+      if (endpoint) {
+        // text/plain keeps this a "simple" request, so the browser doesn't need a CORS preflight
+        request = fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        }).then(function (r) { return r.json(); })
+          .then(function (res) { if (!res || !res.ok) throw new Error((res && res.error) || 'failed'); });
+      } else if (local) {
+        console.warn('No data-endpoint set on #signup-form: sign-up was NOT saved (local preview only).');
+        request = Promise.resolve();
+      } else {
+        request = Promise.reject(new Error('Sign-ups aren’t open just yet. Please check back soon.'));
+      }
 
       request.then(function () {
         card.classList.add('is-done');
-        var done = card.querySelector('.form-success');
-        done.focus({ preventScroll: true });
-      }).catch(function () {
-        submit.disabled = false;
-        alert('Sorry, something went wrong. Please try again.');
+        card.querySelector('.form-success').focus({ preventScroll: true });
+      }).catch(function (err) {
+        var known = err && err.message && err.message !== 'failed' && err.message.indexOf('fetch') < 0 && err.message.indexOf('JSON') < 0 && err.message.indexOf('Failed') < 0;
+        fail(known ? err.message : null);
       });
     });
   }

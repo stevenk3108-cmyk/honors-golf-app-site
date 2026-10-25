@@ -166,7 +166,7 @@
         <h3>Join the club</h3>
         <p>Be among the first to play Honors. Sign up below and we’ll email you everything you need to get the app on your phone.</p>
 
-        <form id="signup-form" novalidate>
+        <form id="signup-form" data-endpoint="" novalidate>
           <div class="form-grid">
             <div class="field">
               <label for="name">Full name</label>
@@ -217,6 +217,9 @@
               </div>
               <p class="field-error">Please choose a device.</p>
             </fieldset>
+
+            <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
 
             <div class="form-foot">
               <p>By joining, you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a>.</p>

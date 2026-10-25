@@ -1,0 +1,34 @@
+HONORS SIGN-UPS → GOOGLE SHEET  (about 10 minutes)
+
+Do this signed in as the Google account you want the confirmation emails to come from
+(e.g. your hello@honorsgolf.app Workspace user).
+
+1. Create a new Google Sheet. Name it "Honors sign-ups".
+
+2. In the sheet: Extensions → Apps Script.
+   Delete anything in the editor and paste in all of apps-script/Code.gs. Click Save.
+
+3. In the editor's function dropdown pick "setup" and click Run.
+   Google asks you to authorize it: Review permissions → choose your account →
+   (if you see "Google hasn't verified this app") Advanced → Go to project → Allow.
+   A "Sign-ups" tab with headings now appears in the sheet.
+
+4. Deploy: Deploy → New deployment → gear icon → Web app.
+     Execute as:        Me
+     Who has access:    Anyone
+   Click Deploy and copy the "Web app URL" (it ends in /exec).
+
+5. Give that URL to Claude (or paste it into index.html yourself):
+     <form id="signup-form" data-endpoint="PASTE-URL-HERE" novalidate>
+   Then commit + push so Vercel redeploys.
+
+6. Test on the live site with your own email. You should get a new row and a confirmation email.
+
+NOTES
+- If you edit Code.gs later you must redeploy: Deploy → Manage deployments → pencil → Version: New version → Deploy.
+  (The URL stays the same.)
+- Confirmation emails send from the account that deployed the script. Free Gmail: ~100/day; Workspace: ~1,500/day.
+- To stop emails but keep saving rows, set SEND_CONFIRMATION = false and redeploy.
+- The "Confirmation email" column shows Sent / Failed / Off for each person.
+- Someone signing up twice with the same email is ignored (no second row, no second email).
+- Don't share the sheet publicly: it contains people's names and emails.
