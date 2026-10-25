@@ -108,6 +108,12 @@
       });
       titles[i].classList.remove('is-shown');
     }
+    // Make sure each phone image is fully loaded and decoded before it is faded in (avoids blank boxes on mobile)
+    var decodes = slides.map(function (img) {
+      img.loading = 'eager';
+      return img.decode ? img.decode().catch(function () {}) : Promise.resolve();
+    });
+    function decoded(i) { return decodes[i]; }
     function setPhone(i) {
       slides.forEach(function (s, n) { s.classList.toggle('is-active', n === i); if (n === i) s.loading = 'eager'; });
       dots.forEach(function (d, n) { d.classList.toggle('is-active', n === i); });
@@ -127,7 +133,8 @@
       var g = ++gen, prev = current;
       wordsOut(prev);
       var outTime = OUT_MS + (wordSets[prev].length - 1) * 50;
-      setTimeout(function () { if (g === gen) setPhone(i); }, 120);
+      var ready = new Promise(function (r) { setTimeout(r, 120); }).then(function () { return decoded(i); });
+      ready.then(function () { if (g === gen) setPhone(i); });
       setTimeout(function () {
         if (g !== gen) return;
         setTitle(i); current = i;

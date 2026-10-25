@@ -517,6 +517,8 @@ select.control option { color: var(--ink); }
   .phone-carousel { position: relative; width: min(58vw, 340px); margin: 44px auto 0; }
   .phone-carousel__slide, .phone-carousel__slide--left { transform: translateX(30px) scale(.96); }
   .phone-carousel__slide.is-active { transform: none; }
+  /* Blur + drop-shadow filters on these large images render as blank boxes on some mobile GPUs */
+  .phone-carousel__slide, .phone-carousel__slide.is-active { filter: none; transition: opacity .6s ease, transform .8s cubic-bezier(.22,1,.36,1); }
   .phone-carousel .dots { margin-top: 26px; }
 
   .cards { grid-template-columns: 1fr; gap: 18px; }
