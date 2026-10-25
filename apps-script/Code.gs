@@ -1,3 +1,6 @@
+/** @OnlyCurrentDoc */
+// ^ Limits this script to THIS spreadsheet only (it can't see your other Google Sheets).
+
 /**
  * Honors early-access sign-ups → Google Sheet (+ confirmation email).
  *
@@ -9,6 +12,11 @@ const SHEET_NAME = 'Sign-ups';
 const SEND_CONFIRMATION = true;      // set false to only save rows, no email
 const FROM_NAME = 'Honors';
 const REPLY_TO = '';                 // optional, e.g. 'hello@honorsgolf.app'
+const MAX_SIGNUPS_PER_DAY = 300;     // safety cap: stops a bot flood filling the sheet / using up your email quota
+
+// Cloudflare Turnstile (CAPTCHA). The SECRET is NOT stored in this file:
+// Project Settings → Script properties → add  TURNSTILE_SECRET = <your secret key>.
+// While that property is missing, the CAPTCHA check is skipped.
 
 const HEADERS = ['Timestamp', 'Name', 'Email', 'Course', 'Country', 'Device', 'Confirmation email'];
 
@@ -37,6 +45,11 @@ function doPost(e) {
     if (!country) return json_({ ok: false, error: 'Please select your country.' });
     if (device !== 'ios' && device !== 'android') return json_({ ok: false, error: 'Please choose a device.' });
 
+    // CAPTCHA (only enforced once TURNSTILE_SECRET has been set)
+    if (!turnstileOk_(data.turnstileToken)) {
+      return json_({ ok: false, error: 'We couldn’t verify you’re human. Please try again.' });
+    }
+
     const sheet = getSheet_();
 
     // Already signed up? Say thanks, but don't add a second row or send a second email.
@@ -45,6 +58,10 @@ function doPost(e) {
       for (let i = 0; i < emails.length; i++) {
         if (String(emails[i][0]).toLowerCase() === email) return json_({ ok: true, duplicate: true });
       }
+    }
+
+    if (!underDailyCap_()) {
+      return json_({ ok: false, error: 'We’re getting a lot of sign-ups right now. Please try again tomorrow.' });
     }
 
     sheet.appendRow([
@@ -105,6 +122,32 @@ function sendConfirmation_(name, email) {
   const options = { to: email, subject: subject, body: text, htmlBody: html, name: FROM_NAME };
   if (REPLY_TO) options.replyTo = REPLY_TO;
   MailApp.sendEmail(options);
+}
+
+function turnstileOk_(token) {
+  const secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET');
+  if (!secret) return true;                 // not configured yet
+  if (!token) return false;
+  try {
+    const res = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'post',
+      payload: { secret: secret, response: String(token).slice(0, 2048) },
+      muteHttpExceptions: true
+    });
+    return JSON.parse(res.getContentText()).success === true;
+  } catch (err) {
+    return false;
+  }
+}
+
+// Counts new sign-ups per day (script's timezone). Call while holding the lock.
+function underDailyCap_() {
+  const props = PropertiesService.getScriptProperties();
+  const today = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  let count = props.getProperty('capDay') === today ? Number(props.getProperty('capCount') || 0) : 0;
+  if (count >= MAX_SIGNUPS_PER_DAY) return false;
+  props.setProperties({ capDay: today, capCount: String(count + 1) });
+  return true;
 }
 
 function getSheet_() {

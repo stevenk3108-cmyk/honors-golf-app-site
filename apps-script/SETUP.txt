@@ -32,3 +32,26 @@ NOTES
 - The "Confirmation email" column shows Sent / Failed / Off for each person.
 - Someone signing up twice with the same email is ignored (no second row, no second email).
 - Don't share the sheet publicly: it contains people's names and emails.
+
+
+---------------------------------------------------------------------------
+SECURITY UPDATE: limit access, daily cap and CAPTCHA  (do after pasting the new Code.gs)
+---------------------------------------------------------------------------
+A. Paste the new apps-script/Code.gs over the old one, Save, then run "setup" again.
+   Google will ask for permissions again (it now only asks for THIS sheet, plus "connect to an external service"
+   for the CAPTCHA check). Approve them.
+B. Deploy → Manage deployments → pencil icon → Version: New version → Deploy. (The /exec URL stays the same.)
+
+C. Turn on the CAPTCHA (Cloudflare Turnstile, free):
+   1. Sign up at dash.cloudflare.com → Turnstile → Add widget.
+      Hostnames: honorsgolf.app  and  www.honorsgolf.app   Mode: Managed.
+   2. Copy the SITE KEY (public) and the SECRET KEY (private).
+   3. Apps Script editor → gear icon (Project Settings) → Script properties → Add script property:
+        Property: TURNSTILE_SECRET     Value: <the secret key>
+   4. Give the SITE KEY to Claude (or put it in index.html: data-turnstile-sitekey="...") and push.
+
+WHO CAN EDIT THE SCRIPT
+This script is attached to the sheet, so it has no separate Share button: anyone who can EDIT THE SHEET can edit the script.
+Check Share on the SHEET: only you (and people you trust) should be Editor; use Viewer for everyone else;
+General access must be "Restricted". Also check Deploy → Manage deployments shows access "Anyone" only for running
+the web app (that does NOT let people edit it).
