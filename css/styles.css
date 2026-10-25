@@ -575,5 +575,3 @@ select.control option { color: var(--ink); }
 /* Sign-up form: honeypot + submit error */
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-error { grid-column: 1 / -1; margin: 0; padding: 12px 16px; border-radius: 9px; background: #fdecea; color: #b3261e; font-size: .95rem; }
-.turnstile-wrap { grid-column: 1 / -1; }
-.turnstile-wrap:empty { display: none; }

@@ -35,20 +35,11 @@ NOTES
 
 
 ---------------------------------------------------------------------------
-SECURITY UPDATE: limit access, daily cap and CAPTCHA  (do after pasting the new Code.gs)
+SECURITY UPDATE: limit access and daily cap  (do after pasting the new Code.gs)
 ---------------------------------------------------------------------------
 A. Paste the new apps-script/Code.gs over the old one, Save, then run "setup" again.
-   Google will ask for permissions again (it now only asks for THIS sheet, plus "connect to an external service"
-   for the CAPTCHA check). Approve them.
+   Google will ask for permissions again (it now only asks for THIS sheet and to send email). Approve them.
 B. Deploy → Manage deployments → pencil icon → Version: New version → Deploy. (The /exec URL stays the same.)
-
-C. Turn on the CAPTCHA (Cloudflare Turnstile, free):
-   1. Sign up at dash.cloudflare.com → Turnstile → Add widget.
-      Hostnames: honorsgolf.app  and  www.honorsgolf.app   Mode: Managed.
-   2. Copy the SITE KEY (public) and the SECRET KEY (private).
-   3. Apps Script editor → gear icon (Project Settings) → Script properties → Add script property:
-        Property: TURNSTILE_SECRET     Value: <the secret key>
-   4. Give the SITE KEY to Claude (or put it in index.html: data-turnstile-sitekey="...") and push.
 
 WHO CAN EDIT THE SCRIPT
 This script is attached to the sheet, so it has no separate Share button: anyone who can EDIT THE SHEET can edit the script.

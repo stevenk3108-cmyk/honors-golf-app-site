@@ -218,23 +218,6 @@
     var card = document.getElementById('signup-card');
     var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Cloudflare Turnstile CAPTCHA: only loaded once a site key is set on the form
-    var siteKey = form.getAttribute('data-turnstile-sitekey');
-    var tsToken = '', tsId = null;
-    if (siteKey) {
-      window.onTurnstileLoad = function () {
-        tsId = window.turnstile.render('#turnstile', {
-          sitekey: siteKey,
-          callback: function (t) { tsToken = t; },
-          'expired-callback': function () { tsToken = ''; },
-          'error-callback': function () { tsToken = ''; }
-        });
-      };
-      var s = document.createElement('script');
-      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad';
-      s.async = true; s.defer = true;
-      document.head.appendChild(s);
-    }
 
     function setError(input, bad) {
       var field = input.closest('.field');
@@ -283,19 +266,16 @@
         course: form.elements.course.value.trim(),
         country: form.elements.country.value,
         device: form.querySelector('input[name="device"]:checked').value,
-        website: form.elements.website.value, // honeypot, should be empty
-        turnstileToken: tsToken
+        website: form.elements.website.value // honeypot, should be empty
       };
       var submit = form.querySelector('button[type="submit"]');
       var errorBox = document.getElementById('form-error');
       function fail(msg) {
         submit.disabled = false;
-        if (tsId !== null && window.turnstile) { tsToken = ''; window.turnstile.reset(tsId); }
         errorBox.textContent = msg || 'Sorry, something went wrong. Please try again.';
         errorBox.hidden = false;
       }
       errorBox.hidden = true;
-      if (siteKey && !tsToken) { fail('Please complete the check above, then try again.'); return; }
       submit.disabled = true;
 
       // Sign-ups are posted to the Google Apps Script web app set in the form's data-endpoint attribute.

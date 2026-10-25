@@ -14,9 +14,6 @@ const FROM_NAME = 'Honors';
 const REPLY_TO = '';                 // optional, e.g. 'hello@honorsgolf.app'
 const MAX_SIGNUPS_PER_DAY = 300;     // safety cap: stops a bot flood filling the sheet / using up your email quota
 
-// Cloudflare Turnstile (CAPTCHA). The SECRET is NOT stored in this file:
-// Project Settings → Script properties → add  TURNSTILE_SECRET = <your secret key>.
-// While that property is missing, the CAPTCHA check is skipped.
 
 const HEADERS = ['Timestamp', 'Name', 'Email', 'Course', 'Country', 'Device', 'Confirmation email'];
 
@@ -44,11 +41,6 @@ function doPost(e) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json_({ ok: false, error: 'Please enter a valid email address.' });
     if (!country) return json_({ ok: false, error: 'Please select your country.' });
     if (device !== 'ios' && device !== 'android') return json_({ ok: false, error: 'Please choose a device.' });
-
-    // CAPTCHA (only enforced once TURNSTILE_SECRET has been set)
-    if (!turnstileOk_(data.turnstileToken)) {
-      return json_({ ok: false, error: 'We couldn’t verify you’re human. Please try again.' });
-    }
 
     const sheet = getSheet_();
 
@@ -122,22 +114,6 @@ function sendConfirmation_(name, email) {
   const options = { to: email, subject: subject, body: text, htmlBody: html, name: FROM_NAME };
   if (REPLY_TO) options.replyTo = REPLY_TO;
   MailApp.sendEmail(options);
-}
-
-function turnstileOk_(token) {
-  const secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET');
-  if (!secret) return true;                 // not configured yet
-  if (!token) return false;
-  try {
-    const res = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'post',
-      payload: { secret: secret, response: String(token).slice(0, 2048) },
-      muteHttpExceptions: true
-    });
-    return JSON.parse(res.getContentText()).success === true;
-  } catch (err) {
-    return false;
-  }
 }
 
 // Counts new sign-ups per day (script's timezone). Call while holding the lock.
