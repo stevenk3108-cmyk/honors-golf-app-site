@@ -23,7 +23,7 @@ Nothing formal. Play a few rounds, set up a league with your mates, and if you�
 
 4. How do I get the app on my phone?
 
-Sign up using the form below and we’ll email you everything you need to get the app on your iPhone. Early access runs through Apple’s official TestFlight program, so you’ll download the app from a reliable source.
+Tap “Get early access” and download the app through Apple’s official TestFlight program. TestFlight is Apple’s app for trying new apps early, so you’ll download Honors from a reliable source.
 
 ----------------------------------------------------------------------
 
@@ -35,16 +35,10 @@ Right now early access is iPhone only. Once we’ve got that to a good place we�
 
 6. Can I invite my friends to join my league?
 
-Send this site to your mates and get them to sign up for early access. Once they’ve created an account you can search them in the app and create your own leagues.
+Send this site to your mates and get them to download the app too. Once they’ve created an account you can search them in the app and create your own leagues.
 
 ----------------------------------------------------------------------
 
-7. I signed up but haven’t heard back
-
-We are slowly adding as many golf courses to the app as we can, but currently this is a manual process. It may take us some time to get to you, so please bear with us.
-
-----------------------------------------------------------------------
-
-8. How does the betting feature work, and is real money involved?
+7. How does the betting feature work, and is real money involved?
 
 Honors allows you to bet on the real events that happen during your round (like who will beat who, or who’s getting trapped in the sand), but no real money is processed or transacted through the app itself. Settling up at the end is still up to you!

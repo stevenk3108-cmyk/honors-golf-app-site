@@ -29,7 +29,7 @@
       </a>
 
       <div class="header-actions">
-        <a class="btn" href="index.html#signup"><span class="cta-long">Sign up for early access</span><span class="cta-short">Sign up</span></a>
+        <a class="btn" href="https://testflight.apple.com/join/6xHWtX1K" data-open-access><span class="cta-long">Get early access</span><span class="cta-short">Get access</span></a>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
           <svg viewBox="0 0 26.92 16.57" aria-hidden="true"><path d="M.64,2.55c.07.15.22.25.39.25l25.45-.14c.32,0,.54-.32.4-.62l-.55-1.79c-.07-.15-.22-.25-.39-.25h-.9s-11.13,0-11.13,0H.44C.12.01-.09.34.04.64l.6,1.91Z"/><path d="M26.34,7.14c-.07-.15-.22-.25-.39-.25h-.9s-11.13,0-11.13,0H.44c-.32,0-.54.33-.4.63l.6,1.91c.07.15.22.25.39.25l25.45-.14c.32,0,.54-.32.4-.62l-.55-1.79Z"/><path d="M26.34,14.02c-.07-.15-.22-.25-.39-.25h-.9s-11.13,0-11.13,0H.44c-.32,0-.54.33-.4.63l.6,1.91c.07.15.22.25.39.25l25.45-.14c.32,0,.54-.32.4-.62l-.55-1.79Z"/></svg>
         </button>
@@ -40,7 +40,7 @@
   <!-- Mobile overflow menu -->
   <div class="menu-overlay" id="menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
     <div class="menu-overlay__bar">
-      <a class="btn" href="index.html#signup">Sign up</a>
+      <a class="btn" href="https://testflight.apple.com/join/6xHWtX1K" data-open-access>Get access</a>
       <button class="menu-close" type="button" aria-label="Close menu">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 2l16 16M18 2L2 18"/></svg>
       </button>
@@ -93,8 +93,8 @@
 
         <aside class="blog-cta">
           <h3>Want early access to Honors?</h3>
-          <p>Be among the first to play Honors with your mates.</p>
-          <a class="btn" href="index.html#signup">Sign up for early access</a>
+          <p>Download the app through TestFlight and be among the first to play Honors with your mates.</p>
+          <a class="btn" href="https://testflight.apple.com/join/6xHWtX1K" data-open-access>Get early access</a>
         </aside>
       </div>
     </section>
@@ -111,6 +111,20 @@
       </nav>
     </div>
   </footer>
+
+  <!-- ===== Early access modal ===== -->
+  <dialog class="access-modal" id="access-modal" aria-labelledby="access-title">
+    <div class="access-modal__card">
+      <button class="access-modal__close" type="button" aria-label="Close" data-close-access>
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17"/></svg>
+      </button>
+      <p class="access-modal__eyebrow">Early access</p>
+      <h2 id="access-title">Get Honors on your iPhone</h2>
+      <p>Download the app through Apple’s TestFlight to get early access. Create a league, track your round and put friendly bets on it with your mates.</p>
+      <a class="btn btn--lg access-modal__cta" href="https://testflight.apple.com/join/6xHWtX1K" target="_blank" rel="noopener">Download on TestFlight</a>
+      <p class="access-modal__fine">You’ll need an iPhone. Apple will ask you to install the free TestFlight app first. Android is coming later. By downloading you agree to our <a href="terms.html">Terms of Service</a>.</p>
+    </div>
+  </dialog>
 
   <script src="js/main.js"></script>
 </body>

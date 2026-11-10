@@ -41,6 +41,32 @@
     if (e.matches && menu.classList.contains('is-open')) setMenu(false);
   });
 
+  /* ---------- Early access modal (TestFlight link) ---------- */
+  var accessModal = document.getElementById('access-modal');
+  if (accessModal && accessModal.showModal) {
+    var openers = [];
+    document.querySelectorAll('[data-open-access]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (menu.classList.contains('is-open')) {
+          menu.classList.remove('is-open'); menu.setAttribute('aria-hidden', 'true');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+        openers.push(a);
+        accessModal.showModal();
+        document.body.classList.add('modal-open');
+      });
+    });
+    accessModal.addEventListener('click', function (e) {
+      // click on the dimmed backdrop (the <dialog> itself), or on a close button
+      if (e.target === accessModal || e.target.closest('[data-close-access]')) accessModal.close();
+    });
+    accessModal.addEventListener('close', function () {
+      document.body.classList.remove('modal-open');
+      var o = openers.pop(); if (o && o.focus) o.focus({ preventScroll: true });
+    });
+  }
+
   /* ---------- Hero: auto-rotating titles (word-by-word blur + spring) ---------- */
   var hero = document.querySelector('.hero');
   if (hero) {
@@ -190,6 +216,7 @@
       var vh = window.innerHeight, best = 0;
       darkSections.forEach(function (el) {
         var r = el.getBoundingClientRect();
+        if (!r.height) return; // hidden section
         var visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
         best = Math.max(best, visible / Math.min(r.height, vh));
       });

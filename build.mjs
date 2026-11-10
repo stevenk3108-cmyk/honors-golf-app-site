@@ -82,8 +82,8 @@ posts.forEach(p => { if (slugs.has(p.slug)) throw new Error(`Duplicate slug: ${p
 
 const cta = `        <aside class="blog-cta">
           <h3>Want early access to Honors?</h3>
-          <p>Be among the first to play Honors with your mates.</p>
-          <a class="btn" href="{{P}}index.html#signup">Sign up for early access</a>
+          <p>Download the app through TestFlight and be among the first to play Honors with your mates.</p>
+          <a class="btn" href="https://testflight.apple.com/join/6xHWtX1K" data-open-access>Get early access</a>
         </aside>`;
 
 const metaRow = p => `<div class="post__meta"><span class="tag">${esc(p.tag)}</span><time datetime="${p.date}">${longDate(p.date)}</time><span>· ${esc(p.read)}</span></div>`;
