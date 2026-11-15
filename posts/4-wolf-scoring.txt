@@ -1,0 +1,33 @@
+slug: wolf-golf-scoring
+title: Wolf: the golf game that makes every hole matter
+seo-title: Wolf Golf Game: How to Play and Score It – Honors
+description: How Wolf works, from picking a partner to going lone Wolf, and how the Honors golf app keeps the points for your group of four.
+tag: Formats
+date: 2026-11-12
+read: 4 min read
+image: assets/how-it-works/wolf-tee-box-call.webp
+image-size: 460x1000
+image-alt: Honors tee-box page where the Wolf picks a partner or passes
+---
+Wolf is a four-player game where the roles change every hole. One player is the Wolf, and after watching everyone else drive, they decide who to team up with. Scottie Scheffler* has talked publicly about playing it with his friends at home, describing it as a game with plenty of volatility that makes it fun.
+
+## How a hole plays
+
+- **The Wolf tees off first.** The others follow.
+- **Pick or pass.** After seeing each drive, the Wolf can pick that player as a partner or pass and wait for the next one.
+- **Lone Wolf.** Pass on all three and the Wolf plays alone against the rest, for bigger points.
+- **Blind Lone Wolf.** Go lone before anyone has teed off for bigger stakes still.
+
+Only the lowest score on each side counts. The lower of those two scores wins the hole, and if they are equal the hole is a push, with no points either way.
+
+## The points in Honors
+
+By default, a 2 v 2 win is worth 1 point from each loser. A lone Wolf plays for 3 points per opponent, so a win is +9 and a loss is -9. A blind lone Wolf plays for 6 per opponent. Every hole is zero-sum, and the host can change any value from 1 to 12.
+
+> Wolf works with one phone, and guests count as players.
+
+Honors keeps the card for the whole group, rotates the Wolf for you and works out every point from the scores and the calls. Win the round and you unlock the Wolf Cap for your character.
+
+Want the full rules, settings and screenshots? Read the [Wolf golf rules](../wolf-golf-rules.html).
+
+~ * Honors is not affiliated with or endorsed by Scottie Scheffler.

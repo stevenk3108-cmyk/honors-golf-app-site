@@ -613,3 +613,39 @@ select.control option { color: var(--ink); }
 .access-modal__fine a { color: inherit; }
 body.modal-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .access-modal[open], .access-modal[open]::backdrop { animation: none; } }
+
+/* ---------- How the game works ---------- */
+.guide .container { max-width: calc(900px + var(--gutter) * 2); }
+.guide-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 36px; }
+.guide-toc a {
+  padding: 7px 14px; border-radius: 99px; background: var(--sand); border: 1px solid var(--sand-border);
+  font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--green-800);
+}
+.guide-toc a:hover { background: var(--sand-border); }
+.guide .post h2 { margin-bottom: 16px; }
+.guide .post__body h3 { margin-top: 0; font-size: 1.6rem; }
+.guide .post__body h3.sub { margin-top: 2em; }
+.guide .post__body table, .guide .post__body .img-slot { max-width: 520px; }
+.rules-table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 1.02rem; color: var(--ink-soft); }
+.rules-table th, .rules-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--sand-border); }
+.rules-table th { background: var(--sand); font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; color: var(--green-800); }
+.img-slot {
+  display: grid; place-items: center; min-height: 120px; border: 2px dashed var(--sand-border); border-radius: var(--radius);
+  color: var(--muted); font-size: .9rem; background: transparent;
+}
+.wolf-note, .example {
+  padding: 14px 18px; border-left: 3px solid var(--mint); background: var(--sand); border-radius: 0 12px 12px 0;
+}
+.step { display: flex; flex-direction: column; gap: 18px; margin: 2em 0; }
+.step .shot { margin: 0; align-self: center; width: min(52vw, 220px); }
+.step .shot img { width: 100%; height: auto; border-radius: 22px; box-shadow: 0 10px 30px rgba(10, 51, 34, .18); }
+@media (min-width: 700px) {
+  .step { flex-direction: row; align-items: center; gap: 44px; }
+  .step--rev { flex-direction: row-reverse; }
+  .step__text { flex: 1; min-width: 0; }
+  .step .shot { flex: 0 0 220px; width: 220px; align-self: center; }
+}
+.nav-desktop a { white-space: nowrap; }
+.how-steps { margin: 0 0 1.2em; padding-left: 1.3em; color: var(--ink-soft); line-height: 1.7; font-size: 1.02rem; }
+.how-steps li { margin-bottom: .4em; }
+.post__body p.fineprint, .fineprint { font-size: .8rem; line-height: 1.5; color: var(--muted); margin-top: -.4em; }

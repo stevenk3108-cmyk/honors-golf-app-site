@@ -1,0 +1,13 @@
+slug: scoring-options
+title: Scoring options
+seo-title: Golf Scoring Options: Stroke Play, Stableford and Wolf – Honors
+description: Stroke play, Stableford or Wolf? See how each scoring option works in Honors and how one phone keeps the card for your whole group.
+tag: Formats
+date: 2026-11-13
+read: 3 min read
+link: how-the-game-works.html
+image: assets/how-it-works/wolf-scorecard-points.webp
+image-size: 460x1000
+image-alt: Honors scorecard showing points after a few holes
+---
+Listing only; this card links to how-the-game-works.html.

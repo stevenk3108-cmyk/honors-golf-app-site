@@ -13,7 +13,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const template = fs.readFileSync(path.join(root, '_template.html'), 'utf8');
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>');
 
 function parse(file) {
   const raw = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
@@ -29,6 +29,7 @@ function parse(file) {
   }
   meta.body = raw.slice(i).replace(/^\n---[^\n]*\n/, '').trim();
   const [w, h] = meta['image-size'].split('x');
+  // optional "link:" makes the feed card point at an existing page instead of generating blog/<slug>.html
   meta.w = w; meta.h = h;
   return meta;
 }
@@ -38,6 +39,7 @@ function bodyHtml(body) {
     const lines = block.split('\n').map(l => l.trimEnd());
     if (lines.every(l => /^- /.test(l))) return `<ul>\n${lines.map(l => `  <li>${inline(l.slice(2))}</li>`).join('\n')}\n</ul>`;
     if (/^## /.test(lines[0])) return `<h3>${inline(lines[0].slice(3))}</h3>`;
+    if (/^~ /.test(lines[0])) return `<p class="fineprint">${inline(lines.map(l => l.replace(/^~ ?/, '')).join(' '))}</p>`;
     if (/^> /.test(lines[0])) return `<blockquote>${inline(lines.map(l => l.replace(/^> ?/, '')).join(' '))}</blockquote>`;
     return `<p>${inline(lines.join(' '))}</p>`;
   }).join('\n');
@@ -101,10 +103,10 @@ const listMain = `    <section class="page-hero" data-theme="dark" aria-labelled
 ${posts.map(p => `        <article class="post" id="${p.slug}">
           ${media(p, '')}
           ${metaRow(p)}
-          <h2><a href="blog/${p.slug}.html">${esc(p.title)}</a></h2>
+          <h2><a href="${p.link || `blog/${p.slug}.html`}">${esc(p.title)}</a></h2>
           <div class="post__body">
             <p>${esc(p.description)}</p>
-            <p><a href="blog/${p.slug}.html">Read the article →</a></p>
+            <p><a href="${p.link || `blog/${p.slug}.html`}">${p.link ? 'Read more' : 'Read the article'} →</a></p>
           </div>
         </article>`).join('\n\n')}
 
@@ -114,7 +116,7 @@ ${cta}
 
 const listLd = SITE_URL ? `\n  <script type="application/ld+json">${JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Blog', name: 'From the course', url: SITE_URL + '/blog.html',
-  blogPost: posts.map(p => ({ '@type': 'BlogPosting', headline: p.title, url: `${SITE_URL}/blog/${p.slug}.html`, datePublished: p.date }))
+  blogPost: posts.map(p => ({ '@type': 'BlogPosting', headline: p.title, url: `${SITE_URL}/${p.link || `blog/${p.slug}.html`}`, datePublished: p.date }))
 })}</script>` : '';
 
 fs.writeFileSync(path.join(root, 'blog.html'), page({
@@ -129,9 +131,9 @@ fs.writeFileSync(path.join(root, 'blog.html'), page({
 // ---- blog/<slug>.html ----
 fs.mkdirSync(path.join(root, 'blog'), { recursive: true });
 for (const f of fs.readdirSync(path.join(root, 'blog'))) {
-  if (f.endsWith('.html') && !slugs.has(f.slice(0, -5))) fs.unlinkSync(path.join(root, 'blog', f)); // removed posts
+  if (f.endsWith('.html') && !posts.some(p => !p.link && p.slug === f.slice(0, -5))) fs.unlinkSync(path.join(root, 'blog', f)); // removed posts
 }
-for (const p of posts) {
+for (const p of posts.filter(p => !p.link)) {
   const ld = JSON.stringify({
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.description,
     datePublished: p.date, dateModified: p.date, author: { '@type': 'Organization', name: SITE_NAME },
@@ -170,7 +172,7 @@ ${cta}
 
 // ---- sitemap.xml ----
 if (SITE_URL) {
-  const urls = [['index.html', null], ['blog.html', null], ['terms.html', null], ...posts.map(p => [`blog/${p.slug}.html`, p.date])];
+  const urls = [['index.html', null], ['blog.html', null], ['how-the-game-works.html', null], ['wolf-golf-rules.html', null], ['terms.html', null], ...posts.filter(p => !p.link).map(p => [`blog/${p.slug}.html`, p.date])];
   fs.writeFileSync(path.join(root, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     urls.map(([u, d]) => `  <url><loc>${SITE_URL}/${u}</loc>${d ? `<lastmod>${d}</lastmod>` : ''}</url>`).join('\n') + `\n</urlset>\n`);
