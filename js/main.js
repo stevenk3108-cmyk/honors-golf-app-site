@@ -42,12 +42,21 @@
   });
 
   /* ---------- Early access modal (TestFlight link) ---------- */
+  /* Sends a custom event to Vercel Analytics (paid plans only; ignored otherwise) and to GTM's dataLayer */
+  function track(name, props) {
+    try { if (window.va) window.va('event', { name: name, data: props }); } catch (e) {}
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, props));
+  }
+
   var accessModal = document.getElementById('access-modal');
   if (accessModal && accessModal.showModal) {
     var openers = [];
+    var testflight = accessModal.querySelector('.access-modal__cta');
+    if (testflight) testflight.addEventListener('click', function () { track('testflight_click'); });
     document.querySelectorAll('[data-open-access]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
+        track('get_access_click', { location: a.closest('#menu') ? 'menu' : 'header' });
         if (menu.classList.contains('is-open')) {
           menu.classList.remove('is-open'); menu.setAttribute('aria-hidden', 'true');
           toggle.setAttribute('aria-expanded', 'false');
